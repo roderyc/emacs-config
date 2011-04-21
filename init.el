@@ -85,6 +85,9 @@
 ;;; Execute a command without having to use meta.
 (global-set-key "\C-x\C-m" 'execute-extended-command)
 
+;;; Insert a λ.
+(global-set-key "\C-x/" '(lambda () (interactive) (insert #x3bb)))
+
 ;;; Delete trailing white space when saving.
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
