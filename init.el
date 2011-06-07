@@ -108,7 +108,6 @@
 
 ;;; Global color theme stuff.
 (require 'color-theme)
-(setq color-theme-is-global t)
 
 ;;; Tango color theme.
 (autoload 'color-theme-tango "color-theme-tango"
