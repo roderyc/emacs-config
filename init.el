@@ -63,11 +63,6 @@
 ;;; Insert a λ.
 (global-set-key "\C-x/" '(lambda () (interactive) (insert #x3bb)))
 
-;;; Use the stroustrup style when editing c.
-(add-hook 'c-initialization-hook
-          (lambda ()
-            (setq-default c-default-style "stroustrup")))
-
 ;;; Global color theme stuff.
 (require 'color-theme)
 

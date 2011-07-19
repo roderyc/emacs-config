@@ -28,3 +28,8 @@
 
 ;;; Set the column to indent on to 80
 (setq-default fill-column 80)
+
+;;; Use the stroustrup style when editing c-ish languages.
+(add-hook 'c-initialization-hook
+          (lambda ()
+            (setq-default c-default-style "stroustrup")))

@@ -28,3 +28,11 @@
 
 ;;; Set the column to indent on to 80
 (setq-default fill-column 100)
+
+;;; Use the gnu style when editing c-ish languages.
+(add-hook 'c-initialization-hook
+          (lambda ()
+            (setq-default c-default-style "gnu")))
+
+;;; Set tab width to 2.
+(setq-default tab-width 2)
