@@ -57,6 +57,10 @@
 (add-to-list 'auto-mode-alist
              (cons "\\.mdwn$" 'markdown-mode))
 
+;;; Load textile-mode on textile files.
+(require 'textile-mode)
+(add-to-list 'auto-mode-alist '("\\.textile\\'" . textile-mode))
+
 ;;; Execute a command without having to use meta.
 (global-set-key "\C-x\C-m" 'execute-extended-command)
 
