@@ -87,4 +87,10 @@
                 scheme-mode-hook))
   (add-hook hook 'turn-on-auto-fill))
 
+;;; Intelligent buffer renaming
+(require 'uniquify)
+(setq uniquify-after-kill-buffer-p t)
+(setq uniquify-ignore-buffers-re "^\\*") ; ignore special buffers
+(setq uniquify-buffer-name-style 'post-forward-angle-brackets)
+
 (load-library (read-string "Which profile to load?: "))
