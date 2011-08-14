@@ -55,7 +55,7 @@
 ;;; Load markdown-mode on markdown files.
 (require 'markdown-mode)
 (add-to-list 'auto-mode-alist
-             (cons "\\.mdwn$" 'markdown-mode))
+             (cons "\\.md\\(wn\\)?$" 'markdown-mode))
 
 ;;; Load textile-mode on textile files.
 (require 'textile-mode)
