@@ -34,5 +34,9 @@
           (lambda ()
             (setq-default c-default-style "gnu")))
 
+(add-hook 'js-mode-hook
+          (lambda ()
+            (setq-default js-indent-level 2)))
+
 ;;; Set tab width to 2.
 (setq-default tab-width 2)
