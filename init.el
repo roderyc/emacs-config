@@ -57,6 +57,10 @@
 (add-to-list 'auto-mode-alist
              (cons "\\.md\\(wn\\)?$" 'markdown-mode))
 
+;;; Coffee script.
+(require 'coffee-mode)
+(add-to-list 'auto-mode-alist '("\\.coffee$" . coffee-mode))
+
 ;;; Load textile-mode on textile files.
 (require 'textile-mode)
 (add-to-list 'auto-mode-alist '("\\.textile\\'" . textile-mode))
