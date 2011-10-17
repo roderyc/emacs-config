@@ -7,29 +7,11 @@
 (server-start)
 
 ;;; Add the site directory to load path.
-(add-to-list 'load-path "~/.emacs.d/site/")
+(defvar *roderic-site-dir* (expand-file-name "~/.emacs.d/site/"))
+(add-to-list 'load-path *roderic-site-dir*)
 
-;;; Paredit
-(require 'paredit)
-(dolist (hook '(scheme-mode-hook
-                emacs-lisp-mode-hook
-                lisp-mode-hook))
-  (add-hook hook 'enable-paredit-mode))
-
-;;; Scheme48
-(autoload 'scheme48-mode "scheme48"
-  "Major mode for editing scheme with scheme48." t)
-
-;;; Zencoding
-(require 'zencoding-mode)
-(add-hook 'sgml-mode-hook 'zencoding-mode)
-
-;;; Tuareg
-(add-to-list 'auto-mode-alist '("\\.ml[iylp]?" . tuareg-mode))
-(autoload 'tuareg-mode "tuareg" "Major mode for editing Caml code" t)
-(autoload 'camldebug "camldebug" "Run the Caml debugger" t)
-(dolist (ext '(".cmo" ".cmx" ".cma" ".cmxa" ".cmi"))
-  (add-to-list 'completion-ignored-extensions ext))
+(defun add-load-path (path)
+  (add-to-list 'load-path (concat *roderic-site-dir* path)))
 
 ;;; Show column numbers in the mode line.
 (column-number-mode t)
@@ -52,6 +34,45 @@
 ;;; Indent with spaces, not tabs.
 (setq-default indent-tabs-mode nil)
 
+;;; Execute a command without having to use meta.
+(global-set-key "\C-x\C-m" 'execute-extended-command)
+
+;;; Insert a λ.
+(global-set-key "\C-x/" '(lambda () (interactive) (insert #x3bb)))
+
+;;; Handle SGR control sequences in output. Allows colored text from e.g. a unix
+;;; command.
+(ansi-color-for-comint-mode-on)
+
+;;; Intelligent buffer renaming
+(require 'uniquify)
+(setq uniquify-after-kill-buffer-p t)
+(setq uniquify-ignore-buffers-re "^\\*") ; ignore special buffers
+(setq uniquify-buffer-name-style 'post-forward-angle-brackets)
+
+
+;;; Paredit
+(require 'paredit)
+(dolist (hook '(scheme-mode-hook
+                emacs-lisp-mode-hook
+                lisp-mode-hook))
+  (add-hook hook 'enable-paredit-mode))
+
+;;; Scheme48
+(autoload 'scheme48-mode "scheme48"
+  "Major mode for editing scheme with scheme48." t)
+
+;;; Zencoding
+(require 'zencoding-mode)
+(add-hook 'sgml-mode-hook 'zencoding-mode)
+
+;;; Tuareg
+(add-to-list 'auto-mode-alist '("\\.ml[iylp]?" . tuareg-mode))
+(autoload 'tuareg-mode "tuareg" "Major mode for editing Caml code" t)
+(autoload 'camldebug "camldebug" "Run the Caml debugger" t)
+(dolist (ext '(".cmo" ".cmx" ".cma" ".cmxa" ".cmi"))
+  (add-to-list 'completion-ignored-extensions ext))
+
 ;;; Load markdown-mode on markdown files.
 (require 'markdown-mode)
 (add-to-list 'auto-mode-alist
@@ -65,12 +86,6 @@
 (require 'textile-mode)
 (add-to-list 'auto-mode-alist '("\\.textile\\'" . textile-mode))
 
-;;; Execute a command without having to use meta.
-(global-set-key "\C-x\C-m" 'execute-extended-command)
-
-;;; Insert a λ.
-(global-set-key "\C-x/" '(lambda () (interactive) (insert #x3bb)))
-
 ;;; Global color theme stuff.
 (require 'color-theme)
 
@@ -80,10 +95,6 @@
   t)
 (color-theme-tango)
 
-;;; Handle SGR control sequences in output. Allows colored text from e.g. a unix
-;;; command.
-(ansi-color-for-comint-mode-on)
-
 ;;; Auto-Fill for these modes.
 (dolist (hook '(text-mode-hook
                 tuareg-mode-hook
@@ -91,10 +102,5 @@
                 scheme-mode-hook))
   (add-hook hook 'turn-on-auto-fill))
 
-;;; Intelligent buffer renaming
-(require 'uniquify)
-(setq uniquify-after-kill-buffer-p t)
-(setq uniquify-ignore-buffers-re "^\\*") ; ignore special buffers
-(setq uniquify-buffer-name-style 'post-forward-angle-brackets)
-
+;;; "Profile" loading.
 (load-library (read-string "Which profile to load?: "))
