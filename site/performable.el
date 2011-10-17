@@ -3,12 +3,6 @@
 ;;; disabled.
 (if (fboundp 'tool-bar-mode)
     (tool-bar-mode -1))
-(if (featurep 'menu-bar-mode)
-    (menu-bar-mode nil))
-
-(setq-default exec-path
-  '("/Users/roderic/bin" "/usr/bin" "/bin" "/usr/sbin" "/sbin" "/usr/local/bin" "/usr/local/sbin"
-    "/Applications/Emacs.app/Contents/MacOS/bin" ))
 
 ;;; Make command meta.
 (setq mac-command-key-is-meta t)

@@ -1,0 +1,3 @@
+[submodule "site/textmate-mode"]
+	path = site/textmate-mode
+	url = git://github.com/defunkt/textmate.el.git
