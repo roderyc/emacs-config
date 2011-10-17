@@ -51,6 +51,13 @@
 (setq uniquify-buffer-name-style 'post-forward-angle-brackets)
 
 
+;;; TextMate
+(add-load-path "textmate-mode")
+(require 'textmate)
+(textmate-mode)
+(global-set-key "\C-c\C-t" 'textmate-goto-file)
+(global-set-key "\C-c\C-e" 'textmate-clear-cache)
+
 ;;; Paredit
 (require 'paredit)
 (dolist (hook '(scheme-mode-hook
