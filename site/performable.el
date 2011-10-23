@@ -8,7 +8,7 @@
 (setq mac-command-key-is-meta t)
 (setq mac-command-modifier 'meta)
 
-(set-frame-font "Menlo Regular 13")
+(set-frame-font "Menlo Regular 14")
 
 ;;; Set the indentation when editing Python to 2.
 (add-hook 'python-mode-hook
