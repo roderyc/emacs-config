@@ -51,6 +51,11 @@
 (setq uniquify-buffer-name-style 'post-forward-angle-brackets)
 
 
+;;; Clojure
+(add-load-path "clojure-mode")
+(require 'clojure-mode)
+(add-to-list 'auto-mode-alist '("\\.clj$" . clojure-mode))
+
 ;;; TextMate
 (add-load-path "textmate-mode")
 (require 'textmate)
