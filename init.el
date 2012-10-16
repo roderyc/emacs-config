@@ -34,6 +34,8 @@
 ;;; Indent with spaces, not tabs.
 (setq-default indent-tabs-mode nil)
 
+(setq-default eshell-path-env "/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin:~/bin:~/.local/bin")
+
 ;;; Execute a command without having to use meta.
 (global-set-key "\C-x\C-m" 'execute-extended-command)
 
@@ -60,7 +62,7 @@
 (add-load-path "textmate-mode")
 (require 'textmate)
 (textmate-mode)
-(global-set-key "\C-c\C-t" 'textmate-goto-file)
+(global-set-key "\C-c\C-g" 'textmate-goto-file)
 (global-set-key "\C-c\C-e" 'textmate-clear-cache)
 
 ;;; Paredit
@@ -69,6 +71,9 @@
                 emacs-lisp-mode-hook
                 lisp-mode-hook))
   (add-hook hook 'enable-paredit-mode))
+
+;;; Chibi
+(add-to-list 'auto-mode-alist '("\\.sld" . scheme-mode))
 
 ;;; Scheme48
 (autoload 'scheme48-mode "scheme48"
@@ -116,3 +121,8 @@
 
 ;;; "Profile" loading.
 (load-library (read-string "Which profile to load?: "))
+
+;;; Features
+(add-load-path "cucumber.el")
+(require 'feature-mode)
+(add-to-list 'auto-mode-alist '("\\.feature$" . feature-mode))
